@@ -1,0 +1,27 @@
+# napisati program koji trazi proste brojeve
+# od 2 do N (N=1000, N=10000, N=100000, N=1000000)
+# sekvencijalno i preko map, imap, i imap_unordered,
+# koristiti tracemalloc i uporediti rezultate
+
+Results:
+
+pool.map(all_primes, range(3, 1000), chunksize=250)
+	Current memory usage is 4.014418MB; Peak was 4.119097MB
+
+pool.map(all_primes, range(3, 10000), chunksize=250)
+	Current memory usage is 225.125542MB; Peak was 226.026416MB
+
+pool.map(all_primes, range(3, 100000), chunksize=250)
+	- nisam docekao
+
+pool.imap(all_primes, range(3, 1000), chunksize=250)
+	Current memory usage is 1.98978MB; Peak was 3.728674MB
+
+pool.imap(all_primes, range(3, 10000), chunksize=250)
+	Current memory usage is 2.034176MB; Peak was 23.694833MB
+
+pool.imap(all_primes, range(3, 100000), chunksize=250)
+	- nisam docekao
+
+
+
