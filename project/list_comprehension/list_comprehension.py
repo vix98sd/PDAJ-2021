@@ -11,7 +11,7 @@ def generate_coordinates(n, m):
 def calculate_distance(field, special_field):
     return np.sqrt((field[0] - special_field[0]) ** 2 + (field[1] - special_field[1]) ** 2)
 
-# Metoda racuna razdaljinu do svih polja
+# Metoda racuna razdaljinu obicnog polja do svih specijalnih polja
 def calculate_distances(field, special_fields):
     distances = [calculate_distance(field, special_field) for special_field in special_fields]
     return distances
