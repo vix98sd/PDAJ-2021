@@ -22,4 +22,5 @@ urlpatterns = [
     path('calculations/sequential', sequential),
     path('calculations/list_comprehension', list_comprehension),
     path('calculations/generators', generators),
+    path('calculations/multiprocessing', multiprocessing),
 ]

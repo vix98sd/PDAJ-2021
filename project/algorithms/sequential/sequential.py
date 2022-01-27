@@ -49,8 +49,8 @@ def sequential(n, m, special_fields):
     return result
 
 if __name__ == "__main__":
-    n = 100
-    m = 100
+    n = 10
+    m = 10
     # points = ["1,3", "3,2", "6,8", "9,6", "5,5", "123,555", "345,543"]
     # special_fields = dr.read_points(points)
     special_fields = [(1,3), (3,2), (6,8), (9,6), (5,5)]
@@ -65,6 +65,7 @@ if __name__ == "__main__":
     # print(f"Current memory usage is {current / 10**6}MB; Peak was {peak / 10**6}MB")
     # tracemalloc.stop()
     print("Execution time:", end - start)
+    print(result)
 
     # dr.display_results(result, n, m, points)
     # dr.show_table(result, n, m, points)

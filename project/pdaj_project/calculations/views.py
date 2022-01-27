@@ -8,6 +8,7 @@ import tracemalloc
 import algorithms.sequential as seq
 import algorithms.list_comprehension as lc
 import algorithms.generators as gen
+import algorithms.mltprocessing as mltp
 
 # Create your views here.
 
@@ -44,12 +45,17 @@ def generators(request):
     if request.method == 'POST':
         n, m, special_fields = _get_data_from_request(request)
         res, time, mbs = _calculate(gen.generators, n, m, special_fields)
-        return JsonResponse({"result": res, "time_in_s": time, "max_memory_in_MB": mbs}, safe=False, status=200)
+        return JsonResponse({ "time_in_s": time, "max_memory_in_MB": mbs,"result": res}, safe=False, status=200)
     res = "GET request is not supported!"
     return JsonResponse(res, safe=False, status=404)
 
 def multiprocessing(request):
-    pass
+    if request.method == 'POST':
+        n, m, special_fields = _get_data_from_request(request)
+        res, time, mbs = _calculate(mltp.multiprocessing, n, m, special_fields)
+        return JsonResponse({ "time_in_s": time, "max_memory_in_MB": mbs,"result": res}, safe=False, status=200)
+    res = "GET request is not supported!"
+    return JsonResponse(res, safe=False, status=404)
 
 def _calculate(function, n, m, special_points):
     tracemalloc.start()
@@ -59,7 +65,7 @@ def _calculate(function, n, m, special_points):
     _, peak = tracemalloc.get_traced_memory()
     tracemalloc.stop()
     tm = end - start
-    return results, tm, peak
+    return results, tm, peak / 10**6
 
 def _get_data_from_request(request):
     data = json.loads(request.body)
