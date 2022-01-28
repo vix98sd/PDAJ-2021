@@ -45,7 +45,7 @@ def generators(request):
     if request.method == 'POST':
         n, m, special_fields = _get_data_from_request(request)
         res, time, mbs = _calculate(gen.generators, n, m, special_fields)
-        return JsonResponse({ "time_in_s": time, "max_memory_in_MB": mbs,"result": res}, safe=False, status=200)
+        return JsonResponse({"result": res, "time_in_s": time, "max_memory_in_MB": mbs}, safe=False, status=200)
     res = "GET request is not supported!"
     return JsonResponse(res, safe=False, status=404)
 
@@ -53,7 +53,7 @@ def multiprocessing(request):
     if request.method == 'POST':
         n, m, special_fields = _get_data_from_request(request)
         res, time, mbs = _calculate(mltp.multiprocessing, n, m, special_fields)
-        return JsonResponse({ "time_in_s": time, "max_memory_in_MB": mbs,"result": res}, safe=False, status=200)
+        return JsonResponse({"result": res, "time_in_s": time, "max_memory_in_MB": mbs}, safe=False, status=200)
     res = "GET request is not supported!"
     return JsonResponse(res, safe=False, status=404)
 
